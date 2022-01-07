@@ -36,6 +36,27 @@ export class PersonagemService {
       )
   }
 
+  // Obtem todos os por nome
+  getPersonagensByName(name:string): Observable<Personagem[]> {
+    const httpOptions2 = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'accept': '*/*'}),
+      params: new HttpParams().set('apikey', this.PUBLIC_KEY)
+                  .set('ts', this.TS)
+                  .set('hash',this.HASH)
+                  .set('name', name)
+    }
+
+    return this.httpClient.get<Personagem[]>(this.url, httpOptions2)
+      .pipe(
+      retry(2),
+      map((response:any) => {
+        console.log(response)
+        return response.data.results
+      }),
+      catchError(this.handleError)
+      )
+  }
+
   // Obtem um personagem pelo id
   getPersonagemById(id: number): Observable<Personagem> {
     return this.httpClient.get<Personagem>(this.url + '/' + id, this.httpOptions)

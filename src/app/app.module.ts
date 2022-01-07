@@ -12,6 +12,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PersonagemDetalhesComponent } from './personagem-detalhes/personagem-detalhes.component';
 import { LoginComponent } from './login/login.component';
 import { AutenticationServiceService } from './services/autentication-service.service';
+import { DialogLoginRequiredComponent } from './dialog-login-required/dialog-login-required.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -20,6 +22,7 @@ import { AutenticationServiceService } from './services/autentication-service.se
     ListaPersonagensComponent,
     PersonagemDetalhesComponent,
     LoginComponent,
+    DialogLoginRequiredComponent,
     
   ],
   imports: [
@@ -29,6 +32,7 @@ import { AutenticationServiceService } from './services/autentication-service.se
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

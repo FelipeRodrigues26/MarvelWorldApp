@@ -16,8 +16,7 @@ export class OnlyLoggedInUsersGuardService implements CanActivate{
     if (this.authService.isUserLogged()) {
       return true;
     } else {
-      console.log("Não autorizado");
-      this.router.navigate(['login']);
+      this.router.navigate(['dialog-login-required']);
       return false;
     }
   }

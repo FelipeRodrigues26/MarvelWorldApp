@@ -1,18 +1,22 @@
-<div style="margin-top: 10%; padding: 10%;">
+<ngb-alert [type]="alertType" *ngIf="alertVisible" [dismissible]="false"  (closed)="true" [ngStyle]="{'margin-top':'5%'}">
+  <strong>{{msgSucessError}}</strong>
+</ngb-alert>
+
+<div [ngStyle]="{'margin-top': '10%','padding': '10%'}">
     <div class="form-floating ms-12">
         <h3>Login</h3>
     </div>
     <div class="form-floating mb-3">
-      <input value={{user.email}} type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+      <input [(ngModel)]="user.email" type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
       <label for="floatingInput">Email address</label>
     </div>
     <div class="form-floating mb-3">
-      <input value={{user.pass}} type="password" class="form-control" id="floatingPassword" placeholder="Password">
+      <input [(ngModel)]="user.pass" type="password" class="form-control" id="floatingPassword" placeholder="Password">
       <label for="floatingPassword">Password</label>
     </div>
 
     <div class="d-grid">
-      <button class="btn btn-primary btn-login text-uppercase fw-bold" (click)="signIn()">Signin</button>
+      <button class="btn btn-primary btn-login text-uppercase fw-bold" (click)="signIn()">Entrar</button>
     </div>
    
   </div>

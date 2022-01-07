@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DialogLoginRequiredComponent } from './dialog-login-required/dialog-login-required.component';
 import { ListaPersonagensComponent } from './lista-personagens/lista-personagens.component';
 import { LoginComponent } from './login/login.component';
 import { PersonagemDetalhesComponent } from './personagem-detalhes/personagem-detalhes.component';
@@ -11,7 +12,6 @@ const routes: Routes = [
   
   { path: 'login', component: LoginComponent },
   
-  
   { path: 'personagem/lista', component: ListaPersonagensComponent},
   
   {
@@ -21,6 +21,7 @@ const routes: Routes = [
     children: [
     ],
   },
+  { path: 'dialog-login-required', component:DialogLoginRequiredComponent },
 ];
 
 @NgModule({

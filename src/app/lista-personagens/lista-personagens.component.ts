@@ -13,31 +13,39 @@ import { PersonagemService } from '../services/personagem.service';
   providers: [NgbCarouselConfig]
 })
 
-export class ListaPersonagensComponent implements OnInit, OnDestroy{
-  
-  subscriptionPersonagens: Subscription = new Subscription; 
+export class ListaPersonagensComponent implements OnInit, OnDestroy {
+
+  subscriptionPersonagens: Subscription = new Subscription;
   personagem = {} as Personagem;
   personagens: Personagem[] = [];
-  
-  //images = ["capitao", "aranha","hulk"].map((dado) => `assets/img/${dado}.png`);
-  //private item: Personagem = new Personagem();
-  // personagem$: Observable<Personagem[]>;
-  // constructor(firestore: Firestore) {
-  //    const collection = collection(firestore, 'personagens');
-  //    this.item$ = collectionData(collection);
-  // }
+  results!: number;
+  searchName: string = '';
+
   constructor(private personagemService: PersonagemService) {
-  
+
   }
 
   ngOnInit() {
     this.getPersonagens()
   }
- 
+
   getPersonagens() {
     this.subscriptionPersonagens = this.personagemService.getPersonagens().subscribe((personagens: Personagem[]) => {
       this.personagens = personagens
+      this.results = this.personagens.length;
     });
+    console.log(this.personagens.length)
+  }
+
+  getPersonagensByName() {
+    if (this.searchName == '')
+      return this.getPersonagens();
+    this.subscriptionPersonagens = this.personagemService.getPersonagensByName(this.searchName).subscribe((personagens: Personagem[]) => {
+      this.personagens = personagens
+      this.results = this.personagens.length;
+    });
+    this.searchName = '';
+
   }
 
   ngOnDestroy(): void {

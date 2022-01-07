@@ -156,7 +156,6 @@ button:hover{
       margin: 0%;
       padding: 0%;
       display: inline;
-      text-decoration: none;
       font-family: 'Ubuntu', sans-serif; 
       font-size: 12pt;
 }
@@ -168,18 +167,6 @@ button:hover{
       margin: 5%;
       text-decoration: none;
 }
-
-
-#comentarios{
-  bottom: 1%;
-}
-  p {
-    margin: 0;
-  }
-
-  .spacer {
-    flex: 1;
-  }
 
   .toolbar {
     position: absolute;

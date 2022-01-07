@@ -5,7 +5,7 @@ import { Firestore, FirestoreInstances, collection, getFirestore } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { FirebaseSignInProvider } from '@firebase/util';
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, signOut, UserCredential } from 'firebase/auth';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 })
 export class AutenticationServiceService {
 
-  constructor(private router:Router){
+  constructor(){
     initializeApp({
       
         apiKey: "AIzaSyAOKzfvrTwRWsmUxG7LJPBdQcEDsCKFbuM",
@@ -27,19 +27,9 @@ export class AutenticationServiceService {
     });
   }
 
-  signIn(email: string, password: string) {
+  signIn(email: string, password: string){
     const auth = getAuth();
-    
-    signInWithEmailAndPassword(auth, email, password).
-    then(
-      () => {
-        console.log("Usuario logado com sucess")
-        this.router.navigate(['personagem/lista']);
-      }
-      
-    ).catch(error => {
-      console.log("Erro ao logar:"+error)
-    })
+    return  signInWithEmailAndPassword(auth, email, password);
   }
 
   signOut() {

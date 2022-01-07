@@ -1,5 +1,10 @@
 <div class="lista">
-    <div class="card" style="width: 100%; margin-top: 5%;">
+    <div class="card" [ngStyle]="{'width': '100%', 'margin-top': '5%', 'margin-bottom': '5%'}">
+        <div id="search"> 
+           <input [(ngModel)]="searchName" class="form-control mr-sm-2" type="text" placeholder=" Search" 
+           aria-label="Search">
+           <button class="buttonStyle" (click)="getPersonagensByName()">Buscar</button>
+        </div>
         <div class="card-header">
             Lista de Personagem
         </div>
@@ -8,12 +13,13 @@
             <ul class="list-group" *ngFor="let person of personagens; index as i; first as isFirst">
                 <li class="list-group-item row">
                     <span>{{person.name}}</span>
-                    <a style="float:right; width: 10rem" class="buttonStyle"
-                        routerLink="/personagem/detalhes/{{person.id}}"> Abrir detalhes</a>
+                    <button [ngStyle]="{'float':'right','width': '8rem'}" class="buttonStyle"
+                        routerLink="/personagem/detalhes/{{person.id}}"> Abrir detalhes</button>
                 </li>
             </ul>
+            <span *ngIf="results==0">Sem resultados</span>
             <div class="card-footer">
-                ***
+               
             </div>
         </div>
     </div>
