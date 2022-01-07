@@ -1,0 +1,40 @@
+<section id="main">
+  <div class="mainHeader">
+      <div class="headerName">
+        <h2>Marvel</h2> 
+      </div> 
+      <h4>descubra  o <span id="poder">PODER</span> desse universo.</h4>
+  </div>
+  
+  <div class="mainNav">
+    <div class="welcome" *ngIf="viewWelcome">
+        <h1>Conheça agora!</h1>
+        <a class="card-link"><button class="buttonStyle" (click)="onViewWelcome()">Inicio</button></a>
+      
+    </div>
+    
+    <router-outlet *ngIf="!viewWelcome"></router-outlet>
+  
+    
+  </div>
+ 
+  <aside class="mainAside">
+        
+        <div class="conteudoEsquerda">
+            
+           
+      <nav>
+          <ul class="txtRodape">
+              <li><a href="">Fale conosco</a></li>
+              <li><a href="">Nosso e-mail</a></li>
+              <li><a href="">Desenvolvedores</a></li>
+              <li><a href="">&copy; Copyright 2022</a></li>
+          </ul>
+      </nav>
+         
+       </div>
+
+  </aside>
+
+</section>
+

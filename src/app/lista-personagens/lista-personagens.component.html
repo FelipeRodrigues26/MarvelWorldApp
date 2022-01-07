@@ -1,0 +1,20 @@
+<div class="lista">
+    <div class="card" style="width: 100%; margin-top: 5%;">
+        <div class="card-header">
+            Lista de Personagem
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Marvel World</h5>
+            <ul class="list-group" *ngFor="let person of personagens; index as i; first as isFirst">
+                <li class="list-group-item row">
+                    <span>{{person.name}}</span>
+                    <a style="float:right; width: 10rem" class="buttonStyle"
+                        routerLink="/personagem/detalhes/{{person.id}}"> Abrir detalhes</a>
+                </li>
+            </ul>
+            <div class="card-footer">
+                ***
+            </div>
+        </div>
+    </div>
+</div>

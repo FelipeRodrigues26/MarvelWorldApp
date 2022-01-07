@@ -1,0 +1,30 @@
+#slide{
+    margin-top: 40px;
+    right: 4%;
+    position: absolute;
+    height: 500px;
+    background: rgb(19, 19, 19);
+    
+}
+#slide img{
+    height: 440px;
+    width: 320px;
+}
+
+#search button{
+    padding: 6px;
+    margin-top: 5px;
+    width: 80px;
+}
+
+.buttonStyle {
+    text-decoration: none ;
+    background-color: #242424;
+    color: rgb(255, 255, 255);
+    border: 1px solid #3c3d3d;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 1px;
+}
+

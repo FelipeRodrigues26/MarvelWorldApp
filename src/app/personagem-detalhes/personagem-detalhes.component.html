@@ -1,0 +1,35 @@
+<div id="person-details">
+  <div class="card" style="width: 18rem; margin-top: 5%;margin-bottom: 5%;">
+    <img src="{{personagem?.thumbnail?.path}}.{{personagem?.thumbnail?.extension}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h6 class="card-title">Personagem: </h6>
+      <p class="card-text">{{personagem.name}}</p>
+      <span *ngIf="personagem.description==''">Sem descricao</span>
+      <p class="card-text" align="justify">{{personagem.description}}</p>
+      <button style="float: left; width: 6rem;" class="btn btn-lg btn-primary"
+        [routerLink]="'/personagem/lista'">Voltar</button>
+      <button style="float: right; width: 6rem;" class="btn btn-lg btn-primary" (click)="open(content)">Mais</button>
+    </div>
+  </div>
+  <ng-template #content let-c="close" let-d="dismiss" id="modal-personagem">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">{{personagem.name}}</h4>
+
+    </div>
+    <div class="modal-body">
+      <h6 class="modal-title" id="modal-basic-title">Séries</h6>
+
+      <p *ngFor="let item of series">
+        - {{item.title}}
+      </p>
+
+      <h6 class="modal-title" id="modal-basic-title">Histórias</h6>
+      <p *ngFor="let item of stories">
+        - {{item.title}}
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Fechar</button>
+    </div>
+  </ng-template>
+</div>
