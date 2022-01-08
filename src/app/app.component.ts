@@ -22,10 +22,10 @@ export class AppComponent {
   //   this.salvar();
   // }
   // salvar() {
-  //   console.log(this.item.genero, this.item.nome);
+  //    (this.item.genero, this.item.nome);
   //   this.db.list(this.catSelecionado).push(this.item)
   //     .then((result: any) => {
-  //       console.log(result.key);
+  //        (result.key);
   //     });
   // }
 

@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   }
 
   async signIn() {
-    console.log(this.user.email + this.user.pass);
+     (this.user.email + this.user.pass);
     
     this.authService.signIn(this.user.email, this.user.pass)
       .then(() => {
@@ -34,13 +34,12 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['personagem/lista']);
         }, 2000)
         
-        console.log("Usuario logout sucess")
       }
       ).catch(error => {
         this.alertVisible = true;
         this.alertType = 'danger';
         this.msgSucessError = 'Autenticação falhou: ';
-        console.log("Erro ao deslogar" + error)
+         ("Erro ao deslogar" + error)
       })
 
   }

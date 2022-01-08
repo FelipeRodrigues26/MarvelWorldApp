@@ -34,7 +34,7 @@ export class ListaPersonagensComponent implements OnInit, OnDestroy {
       this.personagens = personagens
       this.results = this.personagens.length;
     });
-    console.log(this.personagens.length)
+     (this.personagens.length)
   }
 
   getPersonagensByName() {

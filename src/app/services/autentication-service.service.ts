@@ -35,9 +35,9 @@ export class AutenticationServiceService {
   signOut() {
     const auth = getAuth();
     signOut(auth).then(
-      () => {console.log("Usuario logout sucess")}
+      () => { ("Usuario logout sucess")}
     ).catch(error => 
-      console.log("Erro ao deslogar"+error)
+       ("Erro ao deslogar"+error)
     )
   }
 

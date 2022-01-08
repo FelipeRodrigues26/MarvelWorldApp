@@ -16,78 +16,107 @@ export class PersonagemService {
   url = 'https://gateway.marvel.com/v1/public/characters'; // api rest
 
   // injetando o HttpClient
-  constructor(private httpClient: HttpClient) { }
-
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json',  'accept': '*/*'}),
-    params: new HttpParams().set('apikey', this.PUBLIC_KEY)
-                .set('ts', this.TS)
-                .set('hash',this.HASH)
-  }
-
+  constructor(private httpClient: HttpClient) { }  
+ 
+  // httpOptions = {
+  //   headers: new HttpHeaders({ 'Content-Type': 'application/json',  'accept': '*/*'}),
+  //   params: new HttpParams().set('apikey', this.PUBLIC_KEY)
+  //               .set('ts', this.TS)
+  //               .set('hash',this.HASH)
+  // }
+  
+  headers = new HttpHeaders({'Content-Type': 'application/json',  'accept':'*/*'});
+  params =  new HttpParams().append('apikey', this.PUBLIC_KEY)
+                .append('ts', this.TS)
+                .append('hash',this.HASH);
+ 
+ 
   // Obtem todos os personagens
   getPersonagens(): Observable<Personagem[]> {
-
-    return this.httpClient.get<Personagem[]>(this.url, this.httpOptions)
+   
+    const httpOptions = {
+      headers: this.headers,
+      params: this.params
+    };
+    return this.httpClient.get<Personagem[]>(this.url, httpOptions)
       .pipe(
       retry(2),
       map((response:any) => response.data.results),
       catchError(this.handleError)
       )
   }
-
+ 
   // Obtem todos os por nome
-  getPersonagensByName(name:string): Observable<Personagem[]> {
-    const httpOptions2 = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json',  'accept': '*/*'}),
-      params: new HttpParams().set('apikey', this.PUBLIC_KEY)
-                  .set('ts', this.TS)
-                  .set('hash',this.HASH)
-                  .set('name', name)
-    }
-
-    return this.httpClient.get<Personagem[]>(this.url, httpOptions2)
+  getPersonagensByName(name: string): Observable<Personagem[]> {
+    const httpOptions = {
+      headers: this.headers,
+      params: this.params.append('nameStartsWith',name)
+    };
+ 
+    return this.httpClient.get<Personagem[]>(this.url, httpOptions)
       .pipe(
       retry(2),
       map((response:any) => {
-        console.log(response)
+         (response)
         return response.data.results
       }),
       catchError(this.handleError)
       )
   }
-
+ 
   // Obtem um personagem pelo id
   getPersonagemById(id: number): Observable<Personagem> {
-    return this.httpClient.get<Personagem>(this.url + '/' + id, this.httpOptions)
+    
+    const httpOptions = {
+      headers: this.headers,
+      params: this.params,
+    };
+ 
+    return this.httpClient.get<Personagem>(this.url + '/' + id, httpOptions)
       .pipe(
         retry(2),
         map((response:any) => response.data.results[0]),
         catchError(this.handleError)
       )
   }
-
+ 
   // Obtem um personagem pelo id
   getQuadrinhosById(id: number): Observable<any> {
-    return this.httpClient.get<any>(this.url + '/' + id+"/comics", this.httpOptions)
+    
+    let httpOptions = {
+      headers: this.headers,
+      params: this.params
+    };
+ 
+    return this.httpClient.get<any>(this.url + '/' + id+"/comics", httpOptions)
       .pipe(
         retry(2),
         map((response:any) => response.data.results),
         catchError(this.handleError)
       )
   }
-
+ 
   getSeriesQuadrinhosById(id: number): Observable<any> {
-    return this.httpClient.get<any>(this.url + '/' + id+"/series", this.httpOptions)
+ 
+   const httpOptions = {
+     headers: this.headers,
+     params: this.params
+   };
+ 
+    return this.httpClient.get<any>(this.url + '/' + id+"/series", httpOptions)
       .pipe(
         retry(2),
         map((response:any) => response.data.results),
         catchError(this.handleError)
       )
   }
-
+ 
   getHistoriasQuadrinhosById(id: number): Observable<any> {
-    return this.httpClient.get<any>(this.url + '/' + id+"/stories", this.httpOptions)
+   const httpOptions = {
+     headers: this.headers,
+     params: this.params
+   };
+    return this.httpClient.get<any>(this.url + '/' + id+"/stories", httpOptions)
       .pipe(
         retry(2),
         map((response:any) => response.data.results),
@@ -104,7 +133,7 @@ export class PersonagemService {
       // Erro ocorreu no lado do servidor
       errorMessage = `Código do erro: ${error.status}, ` + `menssagem: ${error.message}`;
     }
-    console.log(errorMessage);
+     (errorMessage);
     return throwError(() =>errorMessage);
   };
 

@@ -35,21 +35,21 @@ export class PersonagemDetalhesComponent implements OnInit {
   getPersonagemById(id:number){
     this.subscriptionPersonagens = this.personagemService.getPersonagemById(id).subscribe((personagem: Personagem) => {
       this.personagem = personagem
-      console.log(personagem)
+       
     });
   }
 
   getSeriesById(id:number){
     this.subscriptionPersonagens = this.personagemService.getSeriesQuadrinhosById(id).subscribe((series: any[]) => {
       this.series = series
-      console.log(series)
+       
     });
   }
 
   getStoriesById(id:number){
     this.subscriptionPersonagens = this.personagemService.getHistoriasQuadrinhosById(id).subscribe((stories: any[]) => {
       this.stories = stories
-      console.log(stories)
+      
     });
   }
 

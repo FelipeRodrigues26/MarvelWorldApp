@@ -12,7 +12,7 @@ export class OnlyLoggedInUsersGuardService implements CanActivate{
   constructor(private authService: AutenticationServiceService,  private router: Router) {};
   
   canActivate() {
-    console.log("OnlyLoggedInUsers");
+     ("OnlyLoggedInUsers");
     if (this.authService.isUserLogged()) {
       return true;
     } else {
